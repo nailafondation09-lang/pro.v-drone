@@ -1,0 +1,35 @@
+import { OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { Repository } from 'typeorm';
+import { Drone, Mission, Order, TelemetryPoint } from '../entities/entities.js';
+import { FleetBus } from '../tracking/fleet-bus.js';
+import { TrackingGateway } from '../tracking/tracking.gateway.js';
+import { ZonesService } from '../zones/zones.service.js';
+export declare class SimulatorService implements OnModuleInit, OnModuleDestroy {
+    private missions;
+    private drones;
+    private orders;
+    private telemetry;
+    private bus;
+    private gateway;
+    private zones;
+    private cfg;
+    private log;
+    private sims;
+    private timer?;
+    private busy;
+    constructor(missions: Repository<Mission>, drones: Repository<Drone>, orders: Repository<Order>, telemetry: Repository<TelemetryPoint>, bus: FleetBus, gateway: TrackingGateway, zones: ZonesService, cfg: ConfigService);
+    onModuleInit(): Promise<void>;
+    onModuleDestroy(): void;
+    private start;
+    private newSim;
+    private resumeOrphans;
+    private onIntercept;
+    private tick;
+    private step;
+    private advance;
+    private remaining;
+    private emitAlerts;
+    private checkTransitions;
+    private persistDrone;
+}
